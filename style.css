@@ -1,0 +1,301 @@
+/* ==============================
+   Design Tokens / Variablen
+   ============================== */
+:root {
+  --bg:   #0f172a;
+  --bg-2: #0b1220;
+  --card: #111827;
+
+  --muted: #94a3b8;
+  --fg:    #e5e7eb;
+
+  --acc:   #22d3ee;
+
+  --border: #1f2937;
+  --border-2: #263041;
+
+  --shadow-sm: 0 2px 4px rgba(0,0,0,.15);
+  --shadow-md: 0 4px 6px rgba(0,0,0,.20);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,.35);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  --btn-grad:        linear-gradient(135deg,#2196f3,#1976d2);
+  --btn-grad-hover:  linear-gradient(135deg,#42a5f5,#1e88e5);
+  --btn-grad-active: linear-gradient(135deg,#1565c0,#0d47a1);
+
+  --page-grad: linear-gradient(180deg,#0b1220,#0f172a);
+  --card-grad: linear-gradient(180deg,#0f172a,#0b1220);
+}
+
+/* ==============================
+   Reset / Base
+   ============================== */
+* { box-sizing: border-box; }
+
+html { font-size: 16px; }
+
+body {
+  margin: 0;
+  color: var(--fg);
+  background: var(--page-grad);
+  font: 16px/1.5 system-ui, Segoe UI, Roboto, Inter, Arial, sans-serif;
+}
+
+/* Hilfsklassen */
+.small { font-size: 13px; color: var(--muted); }
+
+/* ==============================
+   Typografie
+   ============================== */
+h1 {
+  font-size: 22px;
+  margin: 0 0 16px;
+}
+
+label {
+  display: block;
+  margin: 14px 0 6px;
+  color: var(--muted);
+}
+
+/* ==============================
+   Layout
+   ============================== */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 24px;
+}
+
+.row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.row > * { flex: 1; }
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+/* ==============================
+   Karten
+   ============================== */
+.card {
+  background: var(--card-grad);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: 24px;
+}
+
+/* ==============================
+   Formularelemente
+   ============================== */
+input[type="text"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  color: var(--fg);
+  background: var(--bg-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-lg);
+  padding: 12px 14px;
+  outline: none;
+}
+
+textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* Fokus-States (Barrierefreiheit) */
+input[type="text"]:focus-visible,
+input[type="password"]:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--acc) 65%, white 0%);
+  outline-offset: 2px;
+}
+
+/* ==============================
+   Buttons
+   ============================== */
+button {
+  border: none;
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s, background .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+button:not(.secondary) {
+  color: #fff;
+  background: var(--btn-grad);
+  box-shadow: var(--shadow-sm);
+}
+button:not(.secondary):hover {
+  background: var(--btn-grad-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+button:not(.secondary):active {
+  background: var(--btn-grad-active);
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+button.secondary {
+  background: #e0e0e0;
+  color: #333;
+}
+button.secondary:hover {
+  background: #d5d5d5;
+  transform: translateY(-1px);
+}
+button.secondary:active {
+  background: #bdbdbd;
+  transform: translateY(0);
+}
+
+/* ==============================
+   Toggle / Footer
+   ============================== */
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Abstand zwischen Toggle und Text */
+  font-size: 14px;
+}
+
+/* Switch Basis */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 32px;   /* kleiner als vorher */
+  height: 18px;  /* kompakter */
+}
+
+/* Input verstecken */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 18px;
+  transition: .2s;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .2s;
+}
+
+/* Aktiv */
+.switch input:checked + .slider {
+  background-color: #2196f3;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(14px);
+}
+
+/* Label daneben */
+.toggle-label {
+  font-size: 14px;
+}
+
+.footer {
+  margin-top: 14px;
+  color: #9aa7bf;
+  font-size: 13px;
+}
+
+/* ==============================
+   Status-Meldungen
+   ============================== */
+.ok,
+.error {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+}
+
+.ok {
+  background: #0d2f1c;
+  border-color: #16a34a;
+  color: #bbf7d0;
+}
+
+.error {
+  background: #3b0d17;
+  border-color: #ef4444;
+  color: #fecaca;
+}
+
+/* ==============================
+   Badges & Code
+   ============================== */
+.badge,
+code.inline {
+  background: var(--card);
+  border: 1px solid #2b3648;
+  border-radius: var(--radius-sm);
+}
+
+.badge {
+  display: inline-block;
+  color: #cbd5e1;
+  font-size: 12px;
+  border-radius: var(--radius-pill);
+  padding: .2rem .6rem;
+}
+
+code.inline {
+  padding: 0 6px;
+}
+
+/* ==============================
+   Snippet-Blöcke
+   ============================== */
+pre.snippet {
+  background: var(--bg-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
